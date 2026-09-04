@@ -1,16 +1,6 @@
 ---
 
-### `README.md`
 
-```markdown
-# Enterprise Banking Infrastructure & Compliance Automation
-
-[![IaC Compliance](https://img.shields.io/badge/IaC-Terraform_1.6+-844FBA?logo=terraform)](https://www.terraform.io/)
-[![Cloud Provider](https://img.shields.io/badge/AWS-LocalStack_4.5-FF9900?logo=amazon-aws)](https://localstack.cloud/)
-[![Security Scan](https://img.shields.io/badge/Security-Trivy_HIGH%2FCRITICAL-blue)](https://github.com/aquasecurity/trivy)
-[![Python Engine](https://img.shields.io/badge/Audit-Python_3.10+-3776AB?logo=python)](https://www.python.org/)
-
-An enterprise-grade AWS infrastructure pipeline designed to automate financial compliance standards (SEC Rule 17a-4 WORM storage, PCI-DSS segmented networks, and KMS key governance). Built for zero-trust financial environments, this architecture features modular Terraform code, dynamic Python guardrails, and shift-left CI/CD validation.
 
 ---
 
@@ -18,8 +8,6 @@ An enterprise-grade AWS infrastructure pipeline designed to automate financial c
 
 The system provisions a secure 3-Tier VPC model with strict network isolation, customer-managed encryption, and immutable audit logs:
 
-
-```
 
 ```
               +-----------------------------------+
@@ -30,8 +18,6 @@ The system provisions a secure 3-Tier VPC model with strict network isolation, c
                     |   Public Route Table  |
                     +-----------+-----------+
                                 |
-
-```
 
 +---------------------------------v----------------------------------+
 | AWS VPC (10.0.0.0/16) - PCI-DSS Isolated                           |
@@ -147,9 +133,4 @@ make act-test
 
 ```
 
-
-
-```
-
----
 

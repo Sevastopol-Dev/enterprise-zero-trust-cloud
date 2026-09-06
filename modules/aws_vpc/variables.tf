@@ -9,3 +9,9 @@ variable "environment" {
   default     = "dev"
   description = "Deployment environment name"
 }
+
+variable "is_localstack" {
+  type        = bool
+  default     = true
+  description = "Set to true when running via tflocal/LocalStack to bypass unsupported Pro APIs."
+}

@@ -52,6 +52,8 @@ lint: init ## Format check and validate Terraform & Python scripts
 
 audit: ## Execute Python runtime compliance guardrails (S3 WORM, KMS, SG Chaining)
 	$(ACTIVATE) && python3 scripts/guardrails.py
+	$(ACTIVATE) && python3 scripts/shift_right_audit.py
+
 
 act-test: ## Test GitHub Actions workflow locally using nektos/act
 	act -W .github/workflows/deploy.yml --container-architecture linux/amd64

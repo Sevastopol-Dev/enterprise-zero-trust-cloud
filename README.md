@@ -54,6 +54,20 @@ v                                                   v
 * **Immutable Audit Storage:** S3 Object Lock configured in `COMPLIANCE` mode enforcing strict WORM (Write Once, Read Many) retention for SEC 17a-4 regulatory alignment.
 * **Key Governance:** Customer Managed Keys (CMK) configured with mandatory key rotation for envelope encryption across logs and storage objects.
 * **Dynamic Compliance Guardrails:** Custom Python engine using `boto3` to perform post-deployment runtime validation of encryption and security group states.
+* **Compliance Standards:** PCI-DSS, SEC Rule 17a-4 (WORM Storage)
+---
+
+---
+
+## 🛡️ Shift-Right Runtime Compliance Guardrail
+
+While "Shift-Left" pipelines validate static Terraform code prior to deployment, this platform features a dynamic **Shift-Right Runtime Auditor** (`scripts/shift_right_audit.py`). 
+
+The engine queries live cloud control planes (`boto3`) to detect post-deployment configuration drift, verifying:
+
+1. **VPC Flow Logging:** Asserts that all managed VPCs have active logging pipelines enabled for network telemetry and auditing.
+2. **Data Tier Ingress Enforcement:** Scans database Security Groups to flag and block open `0.0.0.0/0` ingress rules, enforcing strict zero-trust chaining.
+3. **Environment Isolation:** Safely filters unmanaged default infrastructure during local execution to ensure deterministic testing output.
 
 ---
 
@@ -74,10 +88,12 @@ v                                                   v
 │   └── aws_vpc/
 │       ├── main.tf               # Core VPC, Subnets, SG Chaining, KMS, S3 WORM
 │       ├── outputs.tf            # Exported module attributes
-│       └── variables.tf          # Module configuration options
+│       ├── variables.tf          # Module configuration options
+        └── scp.tf                # AWS Organizations Control-Plane Guardrails
 ├── scripts/
 │   ├── guardrail.py              # Boto3 runtime compliance verification engine
-│   └── init_backend.py           # S3/DynamoDB state bootstrap script
+│   ├── shift_right_audit.py      # Boto3 runtime compliance (VPC Flow Logs)
+    └── init_backend.py           # S3/DynamoDB state bootstrap script
 ├── docker-compose.yml            # LocalStack enterprise container configuration
 └── Makefile                      # Developer speed-run & workflow automation
 
@@ -96,13 +112,11 @@ v                                                   v
 ### Speed-Run Target Drills
 
 1. **Boot Local Infrastructure & State Backend:**
-   ```bash
+```bash
    make up
-
 ```
 
 *Spins up LocalStack containers, verifies gateway health, and initializes the S3 state bucket and DynamoDB lock table.*
-
 2. **Run IaC Static Security Audit:**
 ```bash
 make scan

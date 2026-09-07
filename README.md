@@ -54,7 +54,7 @@ v                                                   v
 * **Immutable Audit Storage:** S3 Object Lock configured in `COMPLIANCE` mode enforcing strict WORM (Write Once, Read Many) retention for SEC 17a-4 regulatory alignment.
 * **Key Governance:** Customer Managed Keys (CMK) configured with mandatory key rotation for envelope encryption across logs and storage objects.
 * **Dynamic Compliance Guardrails:** Custom Python engine using `boto3` to perform post-deployment runtime validation of encryption and security group states.
-* **Compliance Standards:** PCI-DSS, SEC Rule 17a-4 (WORM Storage)
+* **Compliance Standards:** PCI-DSS-4.0, SEC Rule 17a-4 (WORM Storage)
 ---
 
 ---

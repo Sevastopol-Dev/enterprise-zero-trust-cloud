@@ -6,7 +6,7 @@ resource "aws_vpc" "main" {
 
   tags = {
     Name       = "${var.environment}-banking-vpc"
-    Compliance = "PCI-DSS"
+    Compliance = "PCI-DSS-4.0"
   }
 }
 
@@ -50,7 +50,7 @@ resource "aws_internet_gateway" "igw" {
 
   tags = {
     Name       = "${var.environment}-igw"
-    Compliance = "PCI-DSS"
+    Compliance = "PCI-DSS-4.0"
   }
 }
 
@@ -97,7 +97,7 @@ resource "aws_security_group" "web_sg" {
 
   tags = {
     Name       = "${var.environment}-web-sg"
-    Compliance = "PCI-DSS"
+    Compliance = "PCI-DSS-4.0"
   }
 }
 
@@ -124,7 +124,7 @@ resource "aws_security_group" "app_sg" {
 
   tags = {
     Name       = "${var.environment}-app-sg"
-    Compliance = "PCI-DSS"
+    Compliance = "PCI-DSS-4.0"
   }
 }
 
@@ -151,7 +151,7 @@ resource "aws_security_group" "data_sg" {
 
   tags = {
     Name       = "${var.environment}-data-sg"
-    Compliance = "PCI-DSS"
+    Compliance = "PCI-DSS-4.0"
   }
 }
 
@@ -163,7 +163,7 @@ resource "aws_kms_key" "banking_key" {
 
   tags = {
     Name       = "${var.environment}-banking-cmk"
-    Compliance = "PCI-DSS"
+    Compliance = "PCI-DSS-4.0"
   }
 }
 
@@ -231,7 +231,7 @@ resource "aws_cloudwatch_log_group" "flow" {
 
   tags = {
     Name       = "${var.environment}-flow-logs"
-    Compliance = "PCI-DSS"
+    Compliance = "PCI-DSS-4.0"
   }
 }
 
